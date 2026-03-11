@@ -11,6 +11,7 @@
             --cell-gap: 6px;
             --text-base: 16px;
             --content-padding: 25px 30px;
+            --touch-target-min: 44px;
         }
 
         /* ========== 平板专属样式 (600px - 1023px) ========== */
@@ -32,6 +33,27 @@
             }
         }
 
+        /* ========== 触摸设备优化 ========== */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover, .version-btn:hover, .guess-btn:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            .btn:active, .version-btn:active, .guess-btn:active {
+                opacity: 0.7;
+                transform: scale(0.98);
+            }
+            .btn, .version-btn, .guess-btn, .action-buttons button {
+                min-height: var(--touch-target-min);
+                padding: 12px 20px;
+            }
+            input, select, textarea {
+                font-size: var(--text-base);
+                padding: 12px;
+            }
+        }
+
+        /* ========== 基础重置 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -85,24 +107,11 @@
             font-weight: 500;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .header h2 {
-                font-size: 22px;
-            }
-        }
-
         .student-info {
             background: rgba(255, 255, 255, 0.2);
             padding: 8px 20px;
             border-radius: 30px;
             font-size: 16px;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .student-info {
-                font-size: 15px;
-                padding: 6px 16px;
-            }
         }
 
         .experiment-title {
@@ -112,18 +121,6 @@
             color: white;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .experiment-title {
-                font-size: 28px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .experiment-title {
-                font-size: 34px;
-            }
-        }
-
         .progress-bar {
             display: flex;
             justify-content: center;
@@ -131,12 +128,6 @@
             padding: 15px 0;
             background: #f8f9fa;
             border-bottom: 1px solid #e0e0e0;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .progress-bar {
-                gap: 30px;
-            }
         }
 
         .progress-step {
@@ -236,19 +227,9 @@
             touch-action: manipulation;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .btn {
-                padding: 12px 20px;
-                font-size: 16px;
-            }
-            
-            .btn:hover {
-                transform: none;
-            }
-            
-            .btn:active {
-                opacity: 0.8;
-            }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .btn-primary {
@@ -257,18 +238,9 @@
             width: 100%;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(30, 60, 114, 0.3);
-        }
-
         .btn-success {
             background: #28a745;
             color: white;
-        }
-
-        .btn-success:hover {
-            background: #218838;
         }
 
         .btn-secondary {
@@ -276,26 +248,14 @@
             color: white;
         }
 
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
         .btn-info {
             background: #17a2b8;
             color: white;
         }
 
-        .btn-info:hover {
-            background: #138496;
-        }
-
         .btn-danger {
             background: #dc3545;
             color: white;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
         }
 
         .tip {
@@ -318,12 +278,6 @@
             gap: var(--cell-gap);
             margin-bottom: var(--cell-gap);
             justify-content: center;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .grid-row {
-                justify-content: flex-start;
-            }
         }
 
         .age-cell {
@@ -375,25 +329,12 @@
             margin: 20px 0;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .guess-control {
-                gap: 8px;
-            }
-        }
-
         .guess-input {
             flex: 2;
             padding: 15px;
             border: 2px solid #ddd;
             border-radius: 15px;
             font-size: 18px;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .guess-input {
-                padding: 12px;
-                font-size: 16px;
-            }
         }
 
         .guess-btn {
@@ -408,18 +349,6 @@
             cursor: pointer;
             transition: all 0.3s;
             min-height: 44px;
-            touch-action: manipulation;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .guess-btn {
-                padding: 12px;
-                font-size: 16px;
-            }
-        }
-
-        .guess-btn:hover {
-            background: #2a5298;
         }
 
         .version-switch {
@@ -427,12 +356,6 @@
             gap: 10px;
             justify-content: center;
             margin: 20px 0;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .version-switch {
-                gap: 8px;
-            }
         }
 
         .version-btn {
@@ -444,18 +367,6 @@
             font-weight: bold;
             transition: all 0.3s;
             min-height: 44px;
-            touch-action: manipulation;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .version-btn {
-                padding: 8px 16px;
-                font-size: 15px;
-            }
-            
-            .version-btn:hover {
-                transform: none;
-            }
         }
 
         .version-btn.basic.active {
@@ -481,15 +392,6 @@
             padding: 15px;
             border-radius: 15px;
             margin: 15px 0;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .stats-panel {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-                padding: 12px;
-            }
         }
 
         .stats-row {
@@ -547,12 +449,6 @@
             border-left: 5px solid #1e3c72;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .conclusion-section {
-                padding: 15px;
-            }
-        }
-
         .conclusion-title {
             font-size: 22px;
             font-weight: bold;
@@ -561,12 +457,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .conclusion-title {
-                font-size: 20px;
-            }
         }
 
         .fill-blank {
@@ -588,13 +478,6 @@
             border-radius: 8px;
             font-size: 16px;
             width: 100px;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .fill-item input {
-                width: 80px;
-                padding: 6px 10px;
-            }
         }
 
         .judge-scenario {
@@ -682,11 +565,6 @@
             font-size: 16px;
         }
 
-        .example-input input:focus {
-            border-color: #1e3c72;
-            outline: none;
-        }
-
         .evaluation-table {
             width: 100%;
             border-collapse: collapse;
@@ -705,17 +583,6 @@
             text-align: center;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .evaluation-table th {
-                padding: 12px;
-                font-size: 16px;
-            }
-            
-            .evaluation-table td {
-                padding: 12px 8px;
-            }
-        }
-
         .evaluation-table td {
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
@@ -723,21 +590,11 @@
             font-size: 16px;
         }
 
-        .evaluation-table tr:last-child td {
-            border-bottom: none;
-        }
-
         .evaluation-table .dimension {
             text-align: left;
             font-weight: bold;
             color: #1e3c72;
             width: 40%;
-        }
-
-        .star-option {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
         }
 
         .star-option input[type="radio"] {
@@ -767,12 +624,6 @@
             flex-wrap: wrap;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .action-buttons {
-                gap: 8px;
-            }
-        }
-
         .next-round-container {
             background: #d4edda;
             padding: 15px;
@@ -783,21 +634,99 @@
             display: none;
         }
 
-        @media (min-width: 600px) and (max-width: 1023px) {
-            .next-round-container {
-                padding: 12px;
-                font-size: 15px;
-            }
-        }
-
         .next-round-container.show {
             display: block;
             animation: slideIn 0.3s;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .complete-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .complete-card.celebration {
+            background: linear-gradient(145deg, #fff9e6, #fff);
+            border: 2px solid #ffc107;
+        }
+
+        .complete-card h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .student-greeting {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        .achievement-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        .achievement-summary p {
+            margin: 10px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .encouragement {
+            font-size: 22px;
+            color: #fd7e14;
+            margin: 25px 0;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 50px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .complete-stats {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .complete-stats p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .password-section {
+            margin: 25px 0;
+        }
+
+        .password-section input {
+            width: 200px;
+            padding: 12px;
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 8px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .attempts {
+            color: #dc3545;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
 
         .submit-status {
@@ -820,44 +749,21 @@
             display: block;
         }
 
-        /* 表格横向滚动 */
-        .table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 0 -15px;
-            padding: 0 15px;
+        .submit-status.warning {
+            background: #fff3cd;
+            color: #856404;
+            display: block;
         }
 
-        table {
-            min-width: 600px;
-            font-size: 15px;
-        }
-
-        @media (min-width: 600px) and (max-width: 1023px) {
-            table {
-                font-size: 14px;
-            }
-            
-            th, td {
-                padding: 10px 8px;
-            }
-            
-            .guess-history {
-                max-width: 200px;
-                font-size: 13px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            table {
-                font-size: 16px;
-            }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <!-- ==================== 登录页面 ==================== -->
-    <div id="login-page" class="page active">
+    <div id="page-login" class="page active">
         <div class="header">
             <h2>巧猜老师的年龄</h2>
             <div>虚拟仿真实验室</div>
@@ -883,7 +789,7 @@
     </div>
 
     <!-- ==================== 实验一：自由猜想 ==================== -->
-    <div id="exp1-page" class="page">
+    <div id="page-exp1" class="page">
         <div class="header">
             <h2 class="experiment-title">🔬 实验一：自由猜想</h2>
             <div class="student-info" id="exp1-student-info"></div>
@@ -892,13 +798,14 @@
             <div class="progress-step active"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
             <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
             <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
         </div>
         <div class="content">
             <div class="exp-note">
                 <p>🔬 【实验说明】</p>
                 <p>• 你可以反复进行多轮实验（每次目标年龄会变化）</p>
                 <p>• 猜对后自动保存本轮数据，点击“开始下一轮”继续</p>
-                <p>• 建议至少完成3轮，完成后点击下方“完成实验一，提交数据”</p>
+                <p>• 建议至少完成3轮，完成后点击下方“完成实验一”</p>
             </div>
 
             <div id="exp1-current-round">
@@ -915,7 +822,6 @@
                 <div id="exp1-feedback" class="feedback-message"></div>
             </div>
 
-            <!-- 下一轮提示区 -->
             <div class="next-round-container" id="exp1-next-round">
                 <div style="font-size: 18px; margin-bottom: 10px;">✅ 第 <span id="exp1-completed-round-number">1</span> 轮已完成！</div>
                 <button class="btn btn-info" id="exp1-start-next-round">开始第 <span id="exp1-next-round-number">2</span> 轮</button>
@@ -937,15 +843,45 @@
 
             <div class="action-buttons">
                 <button class="btn btn-secondary" id="exp1-reset-round">🔄 重新开始本轮</button>
-                <button class="btn btn-success" id="exp1-submit">📤 完成实验一，提交数据</button>
+                <button class="btn btn-success" id="exp1-submit">📤 完成实验一</button>
                 <button class="btn btn-danger" id="exp1-logout">🚪 退出登录</button>
             </div>
             <div id="exp1-submit-status" class="submit-status"></div>
         </div>
     </div>
 
+    <!-- ==================== 实验一完成确认页（密码4747） ==================== -->
+    <div id="page-complete1" class="page">
+        <div class="header">
+            <h2 class="experiment-title">✅ 实验一完成</h2>
+            <div class="student-info" id="complete1-student-info"></div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
+        </div>
+        <div class="content">
+            <div class="complete-card">
+                <h2>🎉 恭喜！实验一已完成</h2>
+                <div class="complete-stats" id="complete1-stats">
+                    <p>加载数据中...</p>
+                </div>
+                <div class="password-section">
+                    <p>请输入密码进入实验二</p>
+                    <input type="password" id="password-exp1" maxlength="4" placeholder="****">
+                    <div class="attempts" id="attempts-exp1">剩余尝试次数：5</div>
+                    <button class="btn btn-secondary" id="verify-exp1">验证密码</button>
+                    <button class="btn btn-success" id="next-to-exp2" disabled>进入实验二</button>
+                </div>
+                <button class="btn btn-danger" id="complete1-logout">🚪 退出登录</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== 实验二：规律验证 ==================== -->
-    <div id="exp2-page" class="page">
+    <div id="page-exp2" class="page">
         <div class="header">
             <h2 class="experiment-title">🧪 实验二：规律验证</h2>
             <div class="student-info" id="exp2-student-info"></div>
@@ -954,13 +890,14 @@
             <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
             <div class="progress-step active"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
             <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
         </div>
         <div class="content">
             <div class="exp-note">
                 <p>🔬 【实验说明】</p>
                 <p>• 请用“每次都猜中间数”的方法进行多轮实验</p>
                 <p>• 猜对后自动保存本轮数据，点击“开始下一轮”继续</p>
-                <p>• 建议完成5轮，完成后点击下方“完成实验二，提交数据”</p>
+                <p>• 建议完成5轮，完成后点击下方“完成实验二”</p>
             </div>
 
             <div class="version-switch" id="exp2-version-switch">
@@ -983,7 +920,6 @@
                 <div id="exp2-feedback" class="feedback-message"></div>
             </div>
 
-            <!-- 下一轮提示区 -->
             <div class="next-round-container" id="exp2-next-round">
                 <div style="font-size: 18px; margin-bottom: 10px;">✅ 第 <span id="exp2-completed-round-number">1</span> 轮已完成！</div>
                 <button class="btn btn-info" id="exp2-start-next-round">开始第 <span id="exp2-next-round-number">2</span> 轮</button>
@@ -1005,15 +941,45 @@
 
             <div class="action-buttons">
                 <button class="btn btn-secondary" id="exp2-reset-round">🔄 重新开始本轮</button>
-                <button class="btn btn-success" id="exp2-submit">📤 完成实验二，提交数据</button>
+                <button class="btn btn-success" id="exp2-submit">📤 完成实验二</button>
                 <button class="btn btn-danger" id="exp2-logout">🚪 退出登录</button>
             </div>
             <div id="exp2-submit-status" class="submit-status"></div>
         </div>
     </div>
 
+    <!-- ==================== 实验二完成确认页（密码7979） ==================== -->
+    <div id="page-complete2" class="page">
+        <div class="header">
+            <h2 class="experiment-title">✅ 实验二完成</h2>
+            <div class="student-info" id="complete2-student-info"></div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
+        </div>
+        <div class="content">
+            <div class="complete-card">
+                <h2>🎉 恭喜！实验二已完成</h2>
+                <div class="complete-stats" id="complete2-stats">
+                    <p>加载数据中...</p>
+                </div>
+                <div class="password-section">
+                    <p>请输入密码进入实验结论</p>
+                    <input type="password" id="password-exp2" maxlength="4" placeholder="****">
+                    <div class="attempts" id="attempts-exp2">剩余尝试次数：5</div>
+                    <button class="btn btn-secondary" id="verify-exp2">验证密码</button>
+                    <button class="btn btn-success" id="next-to-conclusion" disabled>进入实验结论</button>
+                </div>
+                <button class="btn btn-danger" id="complete2-logout">🚪 退出登录</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== 实验结论页面 ==================== -->
-    <div id="conclusion-page" class="page">
+    <div id="page-conclusion" class="page">
         <div class="header">
             <h2 class="experiment-title">📝 实验结论</h2>
             <div class="student-info" id="conclusion-student-info"></div>
@@ -1022,43 +988,30 @@
             <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
             <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
             <div class="progress-step active"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
         </div>
         <div class="content">
-            <!-- 第一部分：总结填空 -->
+            <!-- 总结填空（修改：最后一项改为文字“二分查找”） -->
             <div class="conclusion-section">
                 <div class="conclusion-title">📝 总结填空</div>
                 <div class="fill-blank">
                     <div class="fill-item"><span>1. 每次都猜</span><input type="text" id="fill1" placeholder="______"><span>数，每次能排除</span><input type="text" id="fill2" placeholder="______"><span>数据。</span></div>
                     <div class="fill-item"><span>2. 在20-50范围内，用这种方法最差</span><input type="text" id="fill3" placeholder="______"><span>次一定能猜中，最少</span><input type="text" id="fill4" placeholder="______"><span>次就能猜中。</span></div>
-                    <div class="fill-item"><span>3. 这种方法叫</span><input type="text" id="fill5" placeholder="______"><span>，也叫</span><input type="text" id="fill6" placeholder="______"><span>。</span></div>
+                    <div class="fill-item"><span>3. 这种方法叫</span><input type="text" id="fill5" placeholder="______"><span>，也叫</span><span style="font-weight: bold; color: #1e3c72;">二分查找</span><span>。</span></div>
                 </div>
             </div>
 
-            <!-- 第二部分：找小球游戏 -->
+            <!-- 找小球游戏 -->
             <div class="conclusion-section">
                 <div class="conclusion-title">🎯 找小球游戏</div>
                 <div class="judge-scenario">
-                    <div class="scenario-desc">
-                        在序号分别为以下的一堆无序的小球中找7号球：
-                    </div>
-                    <div class="scenario-numbers">
-                        1 · 4 · 3 · 2 · 9 · 5 · 7 · 6 · 8
-                    </div>
-                    <div class="scenario-desc">
-                        可以用折半查找吗？
-                    </div>
-                    
+                    <div class="scenario-desc">在序号分别为以下的一堆无序的小球中找7号球：</div>
+                    <div class="scenario-numbers">1 · 4 · 3 · 2 · 9 · 5 · 7 · 6 · 8</div>
+                    <div class="scenario-desc">可以用折半查找吗？</div>
                     <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" name="binarySearch" id="canUse" value="能">
-                            <label for="canUse">能</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" name="binarySearch" id="cannotUse" value="不能">
-                            <label for="cannotUse">不能</label>
-                        </div>
+                        <div class="radio-item"><input type="radio" name="binarySearch" id="canUse" value="能"><label for="canUse">能</label></div>
+                        <div class="radio-item"><input type="radio" name="binarySearch" id="cannotUse" value="不能"><label for="cannotUse">不能</label></div>
                     </div>
-
                     <div class="reason-input">
                         <label><strong>理由：</strong></label>
                         <textarea id="judgeReason" rows="3" placeholder="请填写你的理由..."></textarea>
@@ -1066,116 +1019,105 @@
                 </div>
             </div>
 
-            <!-- 第三部分：生活中的折半查找（举例说明） -->
+            <!-- 生活中的折半查找 -->
             <div class="conclusion-section">
                 <div class="conclusion-title">🔍 生活中的折半查找</div>
                 <div class="life-examples">
-                    <p style="margin-bottom: 15px; font-size: 16px; color: #2c3e50;">请举例说明生活中哪些地方可以用折半查找？（至少写出2个）</p>
-                    
-                    <div class="example-input">
-                        <label>1.</label>
-                        <input type="text" id="life-example1" placeholder="例如：查字典（因为页码有序）">
-                    </div>
-                    
-                    <div class="example-input">
-                        <label>2.</label>
-                        <input type="text" id="life-example2" placeholder="例如：找快递（因为编号有序）">
-                    </div>
+                    <p style="margin-bottom: 15px;">请举例说明生活中哪些地方可以用折半查找？（至少写出2个）</p>
+                    <div class="example-input"><label>1.</label><input type="text" id="life-example1" placeholder="例如：查字典（因为页码有序）"></div>
+                    <div class="example-input"><label>2.</label><input type="text" id="life-example2" placeholder="例如：找快递（因为编号有序）"></div>
                 </div>
             </div>
 
-            <!-- 第四部分：实验学习评价表 -->
+            <!-- 实验学习评价表 -->
             <div class="conclusion-section" style="border-left: 5px solid #ffc107; background: #fff9e6;">
                 <div class="conclusion-title">⭐ 实验学习评价表</div>
-                
                 <table class="evaluation-table">
-                    <thead>
-                        <tr>
-                            <th>评价维度</th>
-                            <th>★☆☆</th>
-                            <th>★★☆</th>
-                            <th>★★★</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>评价维度</th><th>★☆☆</th><th>★★☆</th><th>★★★</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td class="dimension">1. 按照实验步骤完成</td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="step" value="1">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="step" value="2">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="step" value="3">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="dimension">2. 理解折半查找原理</td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="principle" value="1">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="principle" value="2">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="principle" value="3">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="dimension">3. 能够迁移应用</td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="application" value="1">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="application" value="2">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="star-option">
-                                    <input type="radio" name="application" value="3">
-                                </div>
-                            </td>
-                        </tr>
+                        <tr><td class="dimension">1. 按照实验步骤完成</td><td><div class="star-option"><input type="radio" name="step" value="1"></div></td><td><div class="star-option"><input type="radio" name="step" value="2"></div></td><td><div class="star-option"><input type="radio" name="step" value="3"></div></td></tr>
+                        <tr><td class="dimension">2. 理解折半查找原理</td><td><div class="star-option"><input type="radio" name="principle" value="1"></div></td><td><div class="star-option"><input type="radio" name="principle" value="2"></div></td><td><div class="star-option"><input type="radio" name="principle" value="3"></div></td></tr>
+                        <tr><td class="dimension">3. 能够迁移应用</td><td><div class="star-option"><input type="radio" name="application" value="1"></div></td><td><div class="star-option"><input type="radio" name="application" value="2"></div></td><td><div class="star-option"><input type="radio" name="application" value="3"></div></td></tr>
                     </tbody>
                 </table>
-
-                <div class="evaluation-note">
-                    <span>★☆☆ 基本完成</span>
-                    <span>★★☆ 良好</span>
-                    <span>★★★ 优秀</span>
-                </div>
-                <p style="text-align: center; color: #666; margin-top: 10px;">请在对应的星级下打✓（每项只选一个）</p>
+                <div class="evaluation-note"><span>★☆☆ 基本完成</span><span>★★☆ 良好</span><span>★★★ 优秀</span></div>
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-success" id="conclusion-submit">📤 提交结论，完成实验</button>
+                <button class="btn btn-success" id="conclusion-submit">📤 提交结论</button>
                 <button class="btn btn-danger" id="conclusion-logout">🚪 退出登录</button>
             </div>
             <div id="conclusion-submit-status" class="submit-status"></div>
         </div>
     </div>
 
+    <!-- ==================== 实验完成页 ==================== -->
+    <div id="page-complete" class="page">
+        <div class="header">
+            <h2 class="experiment-title">🎉 实验完成</h2>
+            <div class="student-info" id="complete-student-info"></div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验一</div></div>
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">实验二</div></div>
+            <div class="progress-step completed"><div class="progress-dot"></div><div class="progress-label">结论</div></div>
+            <div class="progress-step active"><div class="progress-dot"></div><div class="progress-label">完成</div></div>
+        </div>
+        <div class="content">
+            <div class="complete-card celebration">
+                <h2>🎉 恭喜！实验全部完成！</h2>
+                <div class="student-greeting">亲爱的 <span id="complete-student-name">同学</span></div>
+                
+                <div class="achievement-summary" id="complete-summary">
+                    <!-- 动态生成 -->
+                </div>
+                
+                <div class="encouragement" id="encouragement-message">
+                    <!-- 随机鼓励语 -->
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-info" id="restart-experiment">🔄 再次实验</button>
+                    <button class="btn btn-danger" id="complete-logout">🚪 退出登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ==================== 配置 ====================
         const API_URL = 'https://quickform.cn/api/pw6k0k6aye';
-        
-        // ==================== 全局变量 ====================
+        const PASSWORD_EXP1 = '4747';
+        const PASSWORD_EXP2 = '7979';
+        const MAX_ATTEMPTS = 5;
+
+        // ==================== 请求队列（机房并发优化）====================
+        class RequestQueue {
+            constructor(maxConcurrent = 5) {
+                this.maxConcurrent = maxConcurrent;
+                this.running = 0;
+                this.queue = [];
+            }
+            async add(promiseFactory) {
+                if (this.running >= this.maxConcurrent) {
+                    await new Promise(resolve => this.queue.push(resolve));
+                }
+                this.running++;
+                try {
+                    return await promiseFactory();
+                } finally {
+                    this.running--;
+                    if (this.queue.length) {
+                        const next = this.queue.shift();
+                        next();
+                    }
+                }
+            }
+        }
+        const globalRequestQueue = new RequestQueue(5);
+        const FALLBACK_KEY = 'pending_submissions';
+
+        // ==================== 全局状态 ====================
         let currentUser = { class: '', name: '', seatNumber: null };
         
         // 实验一数据
@@ -1206,53 +1148,135 @@
             roundCompleted: false
         };
 
-        // 用于结论页面的回顾数据（保留但不在界面显示）
-        let exp1Summary = { rounds: [], minGuesses: 0, maxGuesses: 0, totalRounds: 0 };
-        let exp2Summary = { rounds: [], minGuesses: 0, maxGuesses: 0, totalRounds: 0 };
+        // 统计数据
+        let exp1Summary = { totalRounds: 0, minGuesses: 0, maxGuesses: 0 };
+        let exp2Summary = { totalRounds: 0, minGuesses: 0, maxGuesses: 0, version: '' };
 
-        // ==================== 页面切换 ====================
+        // 提交防重
+        let isSubmitting = false;
+
+        // ==================== 工具函数 ====================
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
 
-        // ==================== 退出登录功能 ====================
-        function logout() {
-            localStorage.removeItem('currentUser');
-            currentUser = { class: '', name: '', seatNumber: null };
-            exp1Rounds = [];
-            exp2Rounds = [];
-            exp1Summary = { rounds: [], minGuesses: 0, maxGuesses: 0, totalRounds: 0 };
-            exp2Summary = { rounds: [], minGuesses: 0, maxGuesses: 0, totalRounds: 0 };
-            showPage('login-page');
-            document.getElementById('class-input').value = '';
-            document.getElementById('name-input').value = '';
-            document.getElementById('seat-input').value = '';
+        function safeStorageSet(key, value) {
+            try {
+                localStorage.setItem(key, value);
+                return true;
+            } catch (e) {
+                try {
+                    sessionStorage.setItem(key, value);
+                    return true;
+                } catch (e2) {
+                    window[`_temp_${key}`] = value;
+                    return false;
+                }
+            }
+        }
+        function safeStorageGet(key) {
+            try {
+                return localStorage.getItem(key);
+            } catch (e) {
+                try {
+                    return sessionStorage.getItem(key);
+                } catch (e2) {
+                    return window[`_temp_${key}`] || null;
+                }
+            }
         }
 
-        document.getElementById('exp1-logout').addEventListener('click', logout);
-        document.getElementById('exp2-logout').addEventListener('click', logout);
-        document.getElementById('conclusion-logout').addEventListener('click', logout);
+        async function submitWithRetry(data, maxRetries = 3) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 10000);
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    if (response.ok) return { success: true };
+                    throw new Error(`HTTP ${response.status}`);
+                } catch (err) {
+                    if (i === maxRetries - 1) throw err;
+                    await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
+                }
+            }
+        }
+
+        function saveToLocalFallback(data) {
+            const pending = JSON.parse(safeStorageGet(FALLBACK_KEY) || '[]');
+            pending.push({ data, timestamp: Date.now() });
+            safeStorageSet(FALLBACK_KEY, JSON.stringify(pending));
+        }
+
+        async function retryPending() {
+            const pending = JSON.parse(safeStorageGet(FALLBACK_KEY) || '[]');
+            if (pending.length === 0) return;
+            const newPending = [];
+            for (const item of pending) {
+                try {
+                    await submitWithRetry(item.data);
+                } catch {
+                    newPending.push(item);
+                }
+            }
+            safeStorageSet(FALLBACK_KEY, JSON.stringify(newPending));
+        }
+
+        window.addEventListener('online', retryPending);
 
         // ==================== 登录 ====================
-        document.getElementById('login-btn').addEventListener('click', () => {
+        document.getElementById('login-btn').addEventListener('click', async function(e) {
+            e.preventDefault();
+            if (this.disabled) return;
             const classVal = document.getElementById('class-input').value.trim();
             const nameVal = document.getElementById('name-input').value.trim();
-            const seatVal = parseInt(document.getElementById('seat-input').value);
-
-            if (!classVal || !nameVal || !seatVal) { alert('请填写完整信息！'); return; }
-            if (seatVal < 1 || seatVal > 56) { alert('座位号必须是1-56之间的数字！'); return; }
-
-            currentUser = { class: classVal, name: nameVal, seatNumber: seatVal };
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            const seatVal = document.getElementById('seat-input').value;
+            if (!classVal || !nameVal || !seatVal) {
+                alert('请填写完整信息');
+                return;
+            }
+            const seat = parseInt(seatVal);
+            if (isNaN(seat) || seat < 1 || seat > 56) {
+                alert('座位号必须是1-56之间的数字');
+                return;
+            }
+            this.disabled = true;
+            this.textContent = '登录中...';
+            currentUser = { class: classVal, name: nameVal, seatNumber: seat };
+            safeStorageSet('currentUser', JSON.stringify(currentUser));
             
-            document.getElementById('exp1-student-info').textContent = `${classVal} ${nameVal} (${seatVal}号)`;
-            document.getElementById('exp2-student-info').textContent = `${classVal} ${nameVal} (${seatVal}号)`;
-            document.getElementById('conclusion-student-info').textContent = `${classVal} ${nameVal} (${seatVal}号)`;
+            // 更新各页学生信息
+            document.getElementById('exp1-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
+            document.getElementById('complete1-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
+            document.getElementById('exp2-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
+            document.getElementById('complete2-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
+            document.getElementById('conclusion-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
+            document.getElementById('complete-student-info').textContent = `${classVal} ${nameVal} (${seat}号)`;
             
             resetExp1Round();
-            showPage('exp1-page');
+            showPage('page-exp1');
+            this.disabled = false;
+            this.textContent = '开始实验';
         });
+
+        // ==================== 退出登录 ====================
+        function logout() {
+            safeStorageSet('currentUser', '');
+            currentUser = { class: '', name: '', seatNumber: null };
+            showPage('page-login');
+        }
+        document.getElementById('exp1-logout').addEventListener('click', logout);
+        document.getElementById('complete1-logout').addEventListener('click', logout);
+        document.getElementById('exp2-logout').addEventListener('click', logout);
+        document.getElementById('complete2-logout').addEventListener('click', logout);
+        document.getElementById('conclusion-logout').addEventListener('click', logout);
+        document.getElementById('complete-logout').addEventListener('click', logout);
 
         // ==================== 实验一核心函数 ====================
         function renderExp1Grid() {
@@ -1272,13 +1296,11 @@
                 if (age % 10 === 9 || age === 50) { grid.appendChild(row); row = document.createElement('div'); row.className = 'grid-row'; }
             }
         }
-
         function updateExp1Display() {
             document.getElementById('exp1-range').textContent = `${exp1CurrentRound.min} ~ ${exp1CurrentRound.max}`;
             document.getElementById('exp1-current-count').textContent = exp1CurrentRound.totalGuesses;
             renderExp1Grid();
         }
-
         function addExp1History(guess, result) {
             const list = document.getElementById('exp1-history');
             const item = document.createElement('div'); item.className = 'history-item';
@@ -1287,24 +1309,19 @@
             exp1CurrentRound.history.push({guess, result});
             exp1CurrentRound.totalGuesses++;
         }
-
         function saveExp1Round() {
             if (exp1CurrentRound.history.length === 0) return false;
-            
             exp1Rounds.push({
                 targetAge: exp1CurrentRound.targetAge,
                 guessHistory: exp1CurrentRound.history.map(h => h.guess),
                 firstGuess: exp1CurrentRound.history[0].guess,
                 totalGuesses: exp1CurrentRound.totalGuesses
             });
-            
             document.getElementById('exp1-completed-rounds').textContent = exp1Rounds.length;
             const listDiv = document.getElementById('exp1-rounds-list');
             listDiv.innerHTML = `已完成的轮次：` + exp1Rounds.map((r, idx) => `第${idx+1}轮(${r.totalGuesses}次)`).join(' · ');
-            
             return true;
         }
-
         function startNewExp1Round() {
             exp1CurrentRound = {
                 targetAge: Math.floor(Math.random() * 31) + 20,
@@ -1319,18 +1336,23 @@
             document.getElementById('exp1-round-counter').textContent = exp1Rounds.length + 1;
             updateExp1Display();
         }
+        function resetExp1Round() {
+            if (exp1CurrentRound.roundCompleted) {
+                alert('本轮已完成，请点击“开始下一轮”开始新的一轮');
+                return;
+            }
+            startNewExp1Round();
+        }
 
         document.getElementById('exp1-guess-btn').addEventListener('click', () => {
             if (exp1CurrentRound.roundCompleted) {
-                alert('本轮已经完成，请点击“开始下一轮”继续实验');
+                alert('本轮已完成，请点击“开始下一轮”');
                 return;
             }
-
             const input = document.getElementById('exp1-guess');
             const guess = parseInt(input.value);
             if (isNaN(guess) || guess < 20 || guess > 50) { alert('请输入20-50之间的整数！'); return; }
-            if (exp1CurrentRound.excludedAges.includes(guess)) { alert('这个年龄已经被排除啦！'); return; }
-
+            if (exp1CurrentRound.excludedAges.includes(guess)) { alert('这个年龄已被排除'); return; }
             exp1CurrentRound.guessedCells.push(guess);
             let result, fb;
             if (guess > exp1CurrentRound.targetAge) {
@@ -1349,16 +1371,12 @@
                 result = 'correct';
                 fb = `恭喜！猜对了！年龄就是 ${guess} 岁`;
                 document.getElementById('exp1-feedback').className = 'feedback-message show feedback-correct';
-                
                 addExp1History(guess, result);
                 saveExp1Round();
-                
                 exp1CurrentRound.roundCompleted = true;
-                
                 document.getElementById('exp1-completed-round-number').textContent = exp1Rounds.length;
                 document.getElementById('exp1-next-round-number').textContent = exp1Rounds.length + 1;
                 document.getElementById('exp1-next-round').classList.add('show');
-                
                 updateExp1Display();
                 input.value = '';
                 return;
@@ -1369,113 +1387,100 @@
             input.value = '';
         });
 
-        document.getElementById('exp1-start-next-round').addEventListener('click', () => {
-            startNewExp1Round();
-        });
-
-        function resetExp1Round() {
-            if (exp1CurrentRound.roundCompleted) {
-                alert('本轮已经完成，不能重置。如需重新开始，请点击“开始下一轮”开始新的一轮。');
-                return;
-            }
-            exp1CurrentRound = {
-                targetAge: Math.floor(Math.random() * 31) + 20,
-                min: 20, max: 50,
-                history: [], excludedAges: [], guessedCells: [], totalGuesses: 0,
-                roundCompleted: false
-            };
-            document.getElementById('exp1-history').innerHTML = '';
-            document.getElementById('exp1-feedback').className = 'feedback-message';
-            document.getElementById('exp1-feedback').style.display = 'none';
-            updateExp1Display();
-        }
-
+        document.getElementById('exp1-start-next-round').addEventListener('click', startNewExp1Round);
         document.getElementById('exp1-reset-round').addEventListener('click', resetExp1Round);
 
-        // ==================== 实验一提交 ====================
-        document.getElementById('exp1-submit').addEventListener('click', async () => {
+        // 实验一提交
+        document.getElementById('exp1-submit').addEventListener('click', async function() {
+            if (isSubmitting) { alert('正在提交，请稍候'); return; }
             if (exp1CurrentRound.history.length > 0 && !exp1CurrentRound.roundCompleted) {
-                if (!confirm('当前轮还未完成，是否放弃本轮数据直接提交已保存的轮次？')) {
-                    return;
-                }
+                if (!confirm('当前轮未完成，放弃本轮数据直接提交？')) return;
             }
-            
-            if (exp1Rounds.length === 0) {
-                alert('至少需要完成一轮实验才能提交！');
-                return;
-            }
+            if (exp1Rounds.length === 0) { alert('至少完成一轮实验'); return; }
 
+            exp1Summary = {
+                totalRounds: exp1Rounds.length,
+                minGuesses: Math.min(...exp1Rounds.map(r => r.totalGuesses)),
+                maxGuesses: Math.max(...exp1Rounds.map(r => r.totalGuesses))
+            };
+
+            const data = {
+                class: currentUser.class,
+                name: currentUser.name,
+                seatNumber: currentUser.seatNumber,
+                step: '实验一',
+                stepName: '自由猜想',
+                rounds: exp1Rounds.map((r, idx) => ({ ...r, roundIndex: idx+1 })),
+                totalRounds: exp1Rounds.length,
+                timestamp: new Date().toISOString()
+            };
+
+            isSubmitting = true;
+            const btn = this;
+            btn.disabled = true;
+            btn.textContent = '提交中...';
             const statusDiv = document.getElementById('exp1-submit-status');
             statusDiv.className = 'submit-status';
-            statusDiv.textContent = '⏳ 正在提交数据...';
+            statusDiv.textContent = '⏳ 正在提交...';
             statusDiv.style.display = 'block';
 
-            let successCount = 0;
-            let failCount = 0;
-
-            for (let i = 0; i < exp1Rounds.length; i++) {
-                const round = exp1Rounds[i];
-                const data = {
-                    class: currentUser.class,
-                    name: currentUser.name,
-                    seatNumber: currentUser.seatNumber,
-                    step: '实验一',
-                    stepName: '自由猜想',
-                    targetAge: round.targetAge,
-                    guessHistory: round.guessHistory,
-                    firstGuess: round.firstGuess,
-                    totalGuesses: round.totalGuesses,
-                    roundIndex: i + 1,
-                    totalRounds: exp1Rounds.length,
-                    timestamp: new Date().toISOString()
-                };
-
-                try {
-                    const res = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    if (res.ok) {
-                        successCount++;
-                        statusDiv.textContent = `⏳ 正在提交... (${successCount}/${exp1Rounds.length})`;
-                    } else {
-                        failCount++;
-                        console.error(`第${i+1}轮提交失败:`, await res.text());
-                    }
-                } catch (e) {
-                    failCount++;
-                    console.error(`第${i+1}轮网络错误:`, e);
-                }
-
-                await new Promise(resolve => setTimeout(resolve, 200));
-            }
-
-            if (failCount === 0) {
+            try {
+                if (!navigator.onLine) throw new Error('离线');
+                await globalRequestQueue.add(() => submitWithRetry(data, 3));
                 statusDiv.className = 'submit-status success';
-                statusDiv.textContent = `✓ 全部 ${successCount} 轮数据提交成功！`;
-                
-                exp1Summary = {
-                    rounds: [...exp1Rounds],
-                    minGuesses: Math.min(...exp1Rounds.map(r => r.totalGuesses)),
-                    maxGuesses: Math.max(...exp1Rounds.map(r => r.totalGuesses)),
-                    totalRounds: exp1Rounds.length
-                };
-                
+                statusDiv.textContent = '✓ 提交成功';
                 exp1Rounds = [];
                 document.getElementById('exp1-completed-rounds').textContent = '0';
                 document.getElementById('exp1-rounds-list').innerHTML = '';
                 document.getElementById('exp1-round-counter').textContent = '1';
                 document.getElementById('exp1-next-round').classList.remove('show');
-                
-                setTimeout(() => {
-                    resetExp2Round();
-                    showPage('exp2-page');
-                }, 1500);
+                showComplete1Page();
+            } catch (err) {
+                saveToLocalFallback(data);
+                statusDiv.className = 'submit-status warning';
+                statusDiv.textContent = '⚠ 提交失败，数据已保存，稍后自动重试';
+                showComplete1Page();
+            } finally {
+                isSubmitting = false;
+                btn.disabled = false;
+                btn.textContent = '完成实验一';
+            }
+        });
+
+        function showComplete1Page() {
+            document.getElementById('complete1-stats').innerHTML = `
+                <p>✅ 完成轮数：${exp1Summary.totalRounds} 轮</p>
+                <p>📉 最少猜测次数：${exp1Summary.minGuesses} 次</p>
+                <p>📈 最多猜测次数：${exp1Summary.maxGuesses} 次</p>
+            `;
+            showPage('page-complete1');
+        }
+
+        // ==================== 实验一完成页密码验证 ====================
+        let attempts1 = 0;
+        document.getElementById('verify-exp1').addEventListener('click', function() {
+            const pwd = document.getElementById('password-exp1').value;
+            if (pwd === PASSWORD_EXP1) {
+                document.getElementById('next-to-exp2').disabled = false;
+                document.getElementById('attempts-exp1').textContent = '密码正确 ✓';
+                document.getElementById('attempts-exp1').style.color = '#28a745';
             } else {
-                statusDiv.className = 'submit-status error';
-                statusDiv.textContent = `❌ 提交完成：${successCount}轮成功，${failCount}轮失败，请重试失败的轮次。`;
+                attempts1++;
+                const remaining = MAX_ATTEMPTS - attempts1;
+                if (remaining <= 0) {
+                    document.getElementById('password-exp1').disabled = true;
+                    this.disabled = true;
+                    document.getElementById('attempts-exp1').textContent = '尝试次数过多，请稍后';
+                } else {
+                    document.getElementById('attempts-exp1').textContent = `剩余尝试次数：${remaining}`;
+                    alert('密码错误');
+                }
+            }
+        });
+        document.getElementById('next-to-exp2').addEventListener('click', function() {
+            if (!this.disabled) {
+                resetExp2Round();
+                showPage('page-exp2');
             }
         });
 
@@ -1539,7 +1544,7 @@
         document.querySelectorAll('#exp2-version-switch .version-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 if (exp2CurrentRound.roundCompleted) {
-                    alert('本轮已经完成，不能切换版本。请先开始下一轮。');
+                    alert('本轮已完成，不能切换版本。请先开始下一轮。');
                     return;
                 }
                 document.querySelectorAll('#exp2-version-switch .version-btn').forEach(b => b.classList.remove('active'));
@@ -1598,16 +1603,28 @@
             updateExp2Display();
         }
 
-        document.getElementById('exp2-guess-btn').addEventListener('click', () => {
+        function resetExp2Round() {
             if (exp2CurrentRound.roundCompleted) {
-                alert('本轮已经完成，请点击“开始下一轮”继续实验');
+                alert('本轮已完成，请点击“开始下一轮”开始新的一轮。');
                 return;
             }
+            
+            if (exp2CurrentRound.timerInterval) {
+                clearInterval(exp2CurrentRound.timerInterval);
+                exp2CurrentRound.timerInterval = null;
+            }
+            startNewExp2Round();
+        }
 
+        document.getElementById('exp2-guess-btn').addEventListener('click', () => {
+            if (exp2CurrentRound.roundCompleted) {
+                alert('本轮已完成，请点击“开始下一轮”');
+                return;
+            }
             const input = document.getElementById('exp2-guess');
             const guess = parseInt(input.value);
             if (isNaN(guess) || guess < 20 || guess > 50) { alert('请输入20-50之间的整数！'); return; }
-            if (exp2CurrentRound.excludedAges.includes(guess)) { alert('这个年龄已经被排除啦！'); return; }
+            if (exp2CurrentRound.excludedAges.includes(guess)) { alert('这个年龄已被排除'); return; }
 
             if (exp2CurrentRound.version === 'challenge' && exp2CurrentRound.history.length === 0) {
                 exp2CurrentRound.startTime = Date.now();
@@ -1662,134 +1679,114 @@
             input.value = '';
         });
 
-        document.getElementById('exp2-start-next-round').addEventListener('click', () => {
-            startNewExp2Round();
-        });
-
-        function resetExp2Round() {
-            if (exp2CurrentRound.roundCompleted) {
-                alert('本轮已经完成，不能重置。如需重新开始，请点击“开始下一轮”开始新的一轮。');
-                return;
-            }
-            
-            if (exp2CurrentRound.timerInterval) {
-                clearInterval(exp2CurrentRound.timerInterval);
-                exp2CurrentRound.timerInterval = null;
-            }
-            exp2CurrentRound = {
-                targetAge: Math.floor(Math.random() * 31) + 20,
-                min: 20, max: 50,
-                history: [], excludedAges: [], guessedCells: [], totalGuesses: 0,
-                version: exp2CurrentRound.version,
-                startTime: null, timerInterval: null, currentTime: 0,
-                roundCompleted: false
-            };
-            document.getElementById('exp2-history').innerHTML = '';
-            document.getElementById('exp2-feedback').className = 'feedback-message';
-            document.getElementById('exp2-feedback').style.display = 'none';
-            updateExp2Display();
-        }
-
+        document.getElementById('exp2-start-next-round').addEventListener('click', startNewExp2Round);
         document.getElementById('exp2-reset-round').addEventListener('click', resetExp2Round);
 
-        // ==================== 实验二提交 ====================
-        document.getElementById('exp2-submit').addEventListener('click', async () => {
+        // 实验二提交
+        document.getElementById('exp2-submit').addEventListener('click', async function() {
+            if (isSubmitting) { alert('正在提交，请稍候'); return; }
             if (exp2CurrentRound.history.length > 0 && !exp2CurrentRound.roundCompleted) {
-                if (!confirm('当前轮还未完成，是否放弃本轮数据直接提交已保存的轮次？')) {
-                    return;
-                }
+                if (!confirm('当前轮未完成，放弃本轮数据直接提交？')) return;
             }
-            
-            if (exp2Rounds.length === 0) {
-                alert('至少需要完成一轮实验才能提交！');
-                return;
-            }
+            if (exp2Rounds.length === 0) { alert('至少完成一轮实验'); return; }
 
+            exp2Summary = {
+                totalRounds: exp2Rounds.length,
+                minGuesses: Math.min(...exp2Rounds.map(r => r.totalGuesses)),
+                maxGuesses: Math.max(...exp2Rounds.map(r => r.totalGuesses)),
+                version: exp2Rounds[0]?.version === 'basic' ? '基础版' : 
+                         exp2Rounds[0]?.version === 'explore' ? '探究版' : '挑战版'
+            };
+
+            const data = {
+                class: currentUser.class,
+                name: currentUser.name,
+                seatNumber: currentUser.seatNumber,
+                step: '实验二',
+                stepName: '规律验证',
+                rounds: exp2Rounds.map((r, idx) => ({ ...r, roundIndex: idx+1 })),
+                totalRounds: exp2Rounds.length,
+                timestamp: new Date().toISOString()
+            };
+
+            isSubmitting = true;
+            const btn = this;
+            btn.disabled = true;
+            btn.textContent = '提交中...';
             const statusDiv = document.getElementById('exp2-submit-status');
             statusDiv.className = 'submit-status';
-            statusDiv.textContent = '⏳ 正在提交数据...';
+            statusDiv.textContent = '⏳ 正在提交...';
             statusDiv.style.display = 'block';
 
-            let successCount = 0;
-            let failCount = 0;
-
-            for (let i = 0; i < exp2Rounds.length; i++) {
-                const round = exp2Rounds[i];
-                const data = {
-                    class: currentUser.class,
-                    name: currentUser.name,
-                    seatNumber: currentUser.seatNumber,
-                    step: '实验二',
-                    stepName: '规律验证',
-                    version: round.version === 'basic' ? '基础版' : round.version === 'explore' ? '探究版' : '挑战版',
-                    targetAge: round.targetAge,
-                    guessHistory: round.guessHistory,
-                    firstGuess: round.firstGuess,
-                    totalGuesses: round.totalGuesses,
-                    roundIndex: i + 1,
-                    totalRounds: exp2Rounds.length,
-                    timestamp: new Date().toISOString()
-                };
-
-                if (round.timeSpent) {
-                    data.timeSpent = round.timeSpent;
-                }
-
-                try {
-                    const res = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    if (res.ok) {
-                        successCount++;
-                        statusDiv.textContent = `⏳ 正在提交... (${successCount}/${exp2Rounds.length})`;
-                    } else {
-                        failCount++;
-                        console.error(`第${i+1}轮提交失败:`, await res.text());
-                    }
-                } catch (e) {
-                    failCount++;
-                    console.error(`第${i+1}轮网络错误:`, e);
-                }
-
-                await new Promise(resolve => setTimeout(resolve, 200));
-            }
-
-            if (failCount === 0) {
+            try {
+                if (!navigator.onLine) throw new Error('离线');
+                await globalRequestQueue.add(() => submitWithRetry(data, 3));
                 statusDiv.className = 'submit-status success';
-                statusDiv.textContent = `✓ 全部 ${successCount} 轮数据提交成功！`;
-                
-                exp2Summary = {
-                    rounds: [...exp2Rounds],
-                    minGuesses: Math.min(...exp2Rounds.map(r => r.totalGuesses)),
-                    maxGuesses: Math.max(...exp2Rounds.map(r => r.totalGuesses)),
-                    totalRounds: exp2Rounds.length
-                };
-                
+                statusDiv.textContent = '✓ 提交成功';
                 exp2Rounds = [];
                 document.getElementById('exp2-completed-rounds').textContent = '0';
                 document.getElementById('exp2-rounds-list').innerHTML = '';
                 document.getElementById('exp2-round-counter').textContent = '1';
                 document.getElementById('exp2-next-round').classList.remove('show');
-                
-                setTimeout(() => showPage('conclusion-page'), 1500);
-            } else {
-                statusDiv.className = 'submit-status error';
-                statusDiv.textContent = `❌ 提交完成：${successCount}轮成功，${failCount}轮失败，请重试失败的轮次。`;
+                showComplete2Page();
+            } catch (err) {
+                saveToLocalFallback(data);
+                statusDiv.className = 'submit-status warning';
+                statusDiv.textContent = '⚠ 提交失败，数据已保存，稍后自动重试';
+                showComplete2Page();
+            } finally {
+                isSubmitting = false;
+                btn.disabled = false;
+                btn.textContent = '完成实验二';
             }
         });
 
+        function showComplete2Page() {
+            document.getElementById('complete2-stats').innerHTML = `
+                <p>✅ 完成轮数：${exp2Summary.totalRounds} 轮</p>
+                <p>📉 最少猜测次数：${exp2Summary.minGuesses} 次</p>
+                <p>📈 最多猜测次数：${exp2Summary.maxGuesses} 次</p>
+                <p>📌 使用版本：${exp2Summary.version}</p>
+            `;
+            showPage('page-complete2');
+        }
+
+        // ==================== 实验二完成页密码验证 ====================
+        let attempts2 = 0;
+        document.getElementById('verify-exp2').addEventListener('click', function() {
+            const pwd = document.getElementById('password-exp2').value;
+            if (pwd === PASSWORD_EXP2) {
+                document.getElementById('next-to-conclusion').disabled = false;
+                document.getElementById('attempts-exp2').textContent = '密码正确 ✓';
+                document.getElementById('attempts-exp2').style.color = '#28a745';
+            } else {
+                attempts2++;
+                const remaining = MAX_ATTEMPTS - attempts2;
+                if (remaining <= 0) {
+                    document.getElementById('password-exp2').disabled = true;
+                    this.disabled = true;
+                    document.getElementById('attempts-exp2').textContent = '尝试次数过多，请稍后';
+                } else {
+                    document.getElementById('attempts-exp2').textContent = `剩余尝试次数：${remaining}`;
+                    alert('密码错误');
+                }
+            }
+        });
+        document.getElementById('next-to-conclusion').addEventListener('click', function() {
+            if (!this.disabled) showPage('page-conclusion');
+        });
+
         // ==================== 实验结论提交 ====================
-        document.getElementById('conclusion-submit').addEventListener('click', async () => {
+        document.getElementById('conclusion-submit').addEventListener('click', async function() {
+            if (isSubmitting) { alert('正在提交，请稍候'); return; }
+            
+            // 收集数据（去掉q6）
             const fillBlank = {
                 q1: document.getElementById('fill1').value,
                 q2: document.getElementById('fill2').value,
                 q3: document.getElementById('fill3').value,
                 q4: document.getElementById('fill4').value,
-                q5: document.getElementById('fill5').value,
-                q6: document.getElementById('fill6').value
+                q5: document.getElementById('fill5').value
             };
             
             const canUse = document.getElementById('canUse').checked;
@@ -1807,9 +1804,19 @@
             const applicationRating = document.querySelector('input[name="application"]:checked')?.value;
 
             if (!stepRating || !principleRating || !applicationRating) {
-                alert('请完成实验学习评价表的所有项目！');
+                alert('请完成实验学习评价表的所有项目');
                 return;
             }
+
+            // 计算成果数据（总分）
+            const totalRating = parseInt(stepRating) + parseInt(principleRating) + parseInt(applicationRating);
+            
+            const achievement = {
+                fillCorrect: fillBlank.q1 === '中间' && fillBlank.q2 === '一半' && fillBlank.q3 === '5' && fillBlank.q5 === '折半查找',
+                judgeCorrect: cannotUse === true,
+                exampleCount: lifeExamples.length,
+                totalRating: totalRating
+            };
 
             const data = {
                 class: currentUser.class,
@@ -1819,11 +1826,11 @@
                 conclusion: {
                     fillBlank,
                     judgeScenario: {
-                        canUse: canUse,
-                        cannotUse: cannotUse,
+                        canUse,
+                        cannotUse,
                         reason: judgeReason
                     },
-                    lifeExamples: lifeExamples,
+                    lifeExamples,
                     selfEvaluation: {
                         stepCompletion: parseInt(stepRating),
                         principleUnderstanding: parseInt(principleRating),
@@ -1833,41 +1840,92 @@
                 timestamp: new Date().toISOString()
             };
 
+            isSubmitting = true;
+            const btn = this;
+            btn.disabled = true;
+            btn.textContent = '提交中...';
             const statusDiv = document.getElementById('conclusion-submit-status');
             statusDiv.className = 'submit-status';
             statusDiv.textContent = '⏳ 提交中...';
             statusDiv.style.display = 'block';
 
             try {
-                const res = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+                if (!navigator.onLine) throw new Error('离线');
+                await globalRequestQueue.add(() => submitWithRetry(data, 3));
+                statusDiv.className = 'submit-status success';
+                statusDiv.textContent = '✓ 提交成功';
                 
-                if (res.ok) {
-                    statusDiv.className = 'submit-status success';
-                    statusDiv.textContent = '🎉 实验完成，感谢参与！';
-                } else {
-                    statusDiv.className = 'submit-status error';
-                    statusDiv.textContent = '❌ 提交失败，请稍后重试';
-                }
-            } catch (e) {
-                statusDiv.className = 'submit-status error';
-                statusDiv.textContent = '❌ 网络错误，提交失败';
+                // 跳转到完成页（不提交成果数据）
+                showCompletePage(achievement);
+            } catch (err) {
+                saveToLocalFallback(data);
+                statusDiv.className = 'submit-status warning';
+                statusDiv.textContent = '⚠ 提交失败，数据已保存，稍后自动重试';
+                // 即使失败也显示完成页
+                showCompletePage(achievement);
+            } finally {
+                isSubmitting = false;
+                btn.disabled = false;
+                btn.textContent = '提交结论';
             }
         });
 
-        // ==================== 检查本地存储自动登录 ====================
-        (function() {
-            const saved = localStorage.getItem('currentUser');
+        function showCompletePage(achievement) {
+            document.getElementById('complete-student-name').textContent = currentUser.name;
+            
+            // 显示总分（满分9分）
+            document.getElementById('complete-summary').innerHTML = `
+                <p>📊 总结填空：${achievement.fillCorrect ? '✓ 正确' : '✗ 请检查'}</p>
+                <p>🎯 找小球游戏：${achievement.judgeCorrect ? '✓ 正确' : '✗ 再想想'}</p>
+                <p>💡 生活举例：${achievement.exampleCount} 个</p>
+                <p>📈 自评总分：${achievement.totalRating} 分（满分9分）</p>
+            `;
+            
+            const messages = [
+                '你已经是折半查找小专家啦！',
+                '恭喜你完成挑战，算法小达人！',
+                '每次排除一半，你掌握了分治的奥秘！',
+                '太棒了！你比计算机还聪明！',
+                '继续探索，你会发现更多算法的魅力！',
+                '优秀！你已经掌握了查找的精髓！'
+            ];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById('encouragement-message').textContent = randomMsg;
+            
+            showPage('page-complete');
+        }
+
+        // ==================== 再次实验 ====================
+        document.getElementById('restart-experiment').addEventListener('click', function() {
+            // 重置所有实验数据，但保留登录信息
+            exp1Rounds = [];
+            exp2Rounds = [];
+            exp1Summary = { totalRounds: 0, minGuesses: 0, maxGuesses: 0 };
+            exp2Summary = { totalRounds: 0, minGuesses: 0, maxGuesses: 0, version: '' };
+            
+            // 重置当前轮状态
+            resetExp1Round();
+            resetExp2Round();
+            
+            // 跳转到实验一
+            showPage('page-exp1');
+        });
+
+        // ==================== 自动登录检查 ====================
+        (function autoLogin() {
+            const saved = safeStorageGet('currentUser');
             if (saved) {
-                currentUser = JSON.parse(saved);
-                document.getElementById('exp1-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
-                document.getElementById('exp2-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
-                document.getElementById('conclusion-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
-                resetExp1Round();
-                showPage('exp1-page');
+                try {
+                    currentUser = JSON.parse(saved);
+                    document.getElementById('exp1-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    document.getElementById('complete1-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    document.getElementById('exp2-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    document.getElementById('complete2-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    document.getElementById('conclusion-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    document.getElementById('complete-student-info').textContent = `${currentUser.class} ${currentUser.name} (${currentUser.seatNumber}号)`;
+                    resetExp1Round();
+                    showPage('page-exp1');
+                } catch (e) {}
             }
         })();
     </script>
